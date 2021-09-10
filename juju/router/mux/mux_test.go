@@ -1,7 +1,8 @@
-package gin
+package mux
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"sync/atomic"
@@ -9,7 +10,7 @@ import (
 	"time"
 
 	"github.com/badboyd/krakend-ratelimit/juju/router"
-	"github.com/gin-gonic/gin"
+	"github.com/gorilla/mux"
 	"github.com/luraproject/lura/config"
 	"github.com/luraproject/lura/proxy"
 )
@@ -18,6 +19,9 @@ func TestNewRateLimiterMw_CustomHeaderIP(t *testing.T) {
 	header := "X-Custom-Forwarded-For"
 
 	cfg := &config.EndpointConfig{
+		Endpoint: "/",
+		Method:   "GET",
+		Timeout:  1 * time.Second,
 		ExtraConfig: map[string]interface{}{
 			router.Namespace: map[string]interface{}{
 				"strategy":      "ip",
@@ -38,6 +42,9 @@ func TestNewRateLimiterMw_CustomHeader(t *testing.T) {
 	header := "X-Custom-Forwarded-For"
 
 	cfg := &config.EndpointConfig{
+		Endpoint: "/",
+		Method:   "GET",
+		Timeout:  1 * time.Second,
 		ExtraConfig: map[string]interface{}{
 			router.Namespace: map[string]interface{}{
 				"strategy":      "header",
@@ -56,6 +63,9 @@ func TestNewRateLimiterMw_CustomHeader(t *testing.T) {
 
 func TestNewRateLimiterMw_DefaultIP(t *testing.T) {
 	cfg := &config.EndpointConfig{
+		Endpoint: "/",
+		Method:   "GET",
+		Timeout:  1 * time.Second,
 		ExtraConfig: map[string]interface{}{
 			router.Namespace: map[string]interface{}{
 				"strategy":      "ip",
@@ -78,10 +88,8 @@ func testRateLimiterMw(t *testing.T, rd requestDecorator, cfg *config.EndpointCo
 		return &proxy.Response{}, nil
 	}
 
-	gin.SetMode(gin.TestMode)
-	r := gin.New()
-
-	r.GET("/", HandlerFactory(cfg, p))
+	r := mux.NewRouter()
+	r.HandleFunc("/", HandlerFactory(cfg, p)).Methods(http.MethodGet)
 
 	total := 10000
 	start := time.Now()
@@ -101,6 +109,7 @@ func testRateLimiterMw(t *testing.T, rd requestDecorator, cfg *config.EndpointCo
 		}
 	}
 
+	log.Println(hits, ok)
 	if hits != ok {
 		t.Errorf("hits do not match the tracked oks: %d/%d", hits, ok)
 	}

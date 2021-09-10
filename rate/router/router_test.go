@@ -9,7 +9,7 @@ import (
 
 func TestConfigGetter(t *testing.T) {
 	serializedCfg := []byte(`{
-		"github.com/devopsfaith/krakend-ratelimit/rate/router": {
+		"github.com/badboyd/krakend-ratelimit/rate/router": {
 			"maxRate":10
 		}
 	}`)

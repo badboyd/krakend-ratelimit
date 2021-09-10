@@ -6,7 +6,7 @@ Sample endpoint extra config
 	...
 	"extra_config": {
 		...
-		"github.com/devopsfaith/krakend-ratelimit/juju/router": {
+		"github.com/badboyd/krakend-ratelimit/juju/router": {
 			"maxRate": 2000,
 			"strategy": "header",
 			"clientMaxRate": 100,
@@ -28,7 +28,7 @@ import (
 )
 
 // Namespace is the key to use to store and access the custom config data for the router
-const Namespace = "github.com/devopsfaith/krakend-ratelimit/juju/router"
+const Namespace = "github.com/badboyd/krakend-ratelimit/juju/router"
 
 // Config is the custom config struct containing the params for the router middlewares
 type Config struct {

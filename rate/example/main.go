@@ -13,8 +13,8 @@ import (
 	"github.com/luraproject/lura/transport/http/client"
 	http "github.com/luraproject/lura/transport/http/server"
 
-	rateproxy "github.com/devopsfaith/krakend-ratelimit/rate/proxy"
-	raterouter "github.com/devopsfaith/krakend-ratelimit/rate/router/gin"
+	rateproxy "github.com/badboyd/krakend-ratelimit/rate/proxy"
+	raterouter "github.com/badboyd/krakend-ratelimit/rate/router/gin"
 )
 
 func main() {

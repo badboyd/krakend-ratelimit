@@ -6,7 +6,7 @@ Sample backend extra config
 	...
 	"extra_config": {
 		...
-		"github.com/devopsfaith/krakend-ratelimit/rate/proxy": {
+		"github.com/badboyd/krakend-ratelimit/rate/proxy": {
 			"maxRate": 100,
 			"capacity": 100
 		},
@@ -16,7 +16,7 @@ Sample backend extra config
 
 Adding the middleware to your proxy stack
 
-	import rate "github.com/devopsfaith/krakend-ratelimit/rate/proxy"
+	import rate "github.com/badboyd/krakend-ratelimit/rate/proxy"
 
 	...
 
@@ -40,12 +40,12 @@ import (
 	"github.com/luraproject/lura/config"
 	"github.com/luraproject/lura/proxy"
 
-	krakendrate "github.com/devopsfaith/krakend-ratelimit"
-	"github.com/devopsfaith/krakend-ratelimit/rate"
+	krakendrate "github.com/badboyd/krakend-ratelimit"
+	"github.com/badboyd/krakend-ratelimit/rate"
 )
 
 // Namespace is the key to use to store and access the custom config data for the proxy
-const Namespace = "github.com/devopsfaith/krakend-ratelimit/rate/proxy"
+const Namespace = "github.com/badboyd/krakend-ratelimit/rate/proxy"
 
 // Config is the custom config struct containing the params for the limiter
 type Config struct {

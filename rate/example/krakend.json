@@ -15,7 +15,7 @@
                     "url_pattern": "/user/schedule/{id}.rss",
                     "encoding": "rss",
                     "extra_config": {
-                        "github.com/devopsfaith/krakend-ratelimit/rate/proxy": {
+                        "github.com/badboyd/krakend-ratelimit/rate/proxy": {
                             "maxRate": 1,
                             "capacity": 1
                         }
@@ -28,7 +28,7 @@
                     "url_pattern": "/user/{id}.rss",
                     "encoding": "rss",
                     "extra_config": {
-                        "github.com/devopsfaith/krakend-ratelimit/rate/proxy": {
+                        "github.com/badboyd/krakend-ratelimit/rate/proxy": {
                             "maxRate": 2,
                             "capacity": 2
                         }
@@ -36,7 +36,7 @@
                 }
             ],
             "extra_config": {
-                "github.com/devopsfaith/krakend-ratelimit/rate/router": {
+                "github.com/badboyd/krakend-ratelimit/rate/router": {
                     "maxRate": 50,
                     "clientMaxRate": 5,
                     "strategy": "ip"

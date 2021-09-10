@@ -5,7 +5,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	krakendrate "github.com/devopsfaith/krakend-ratelimit"
+	krakendrate "github.com/badboyd/krakend-ratelimit"
 	"github.com/luraproject/lura/config"
 	"github.com/luraproject/lura/proxy"
 )

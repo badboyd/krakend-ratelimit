@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	jujuproxy "github.com/devopsfaith/krakend-ratelimit/juju/proxy"
-	jujurouter "github.com/devopsfaith/krakend-ratelimit/juju/router/gin"
+	jujuproxy "github.com/badboyd/krakend-ratelimit/juju/proxy"
+	jujurouter "github.com/badboyd/krakend-ratelimit/juju/router/gin"
 	"github.com/gin-gonic/gin"
 	"github.com/luraproject/lura/config"
 	"github.com/luraproject/lura/logging"
