@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/badboyd/krakend-ratelimit/juju/router"
-	"github.com/gorilla/mux"
 	"github.com/luraproject/lura/config"
 	"github.com/luraproject/lura/proxy"
 )
@@ -88,8 +87,10 @@ func testRateLimiterMw(t *testing.T, rd requestDecorator, cfg *config.EndpointCo
 		return &proxy.Response{}, nil
 	}
 
-	r := mux.NewRouter()
-	r.HandleFunc("/", HandlerFactory(cfg, p)).Methods(http.MethodGet)
+	r := http.NewServeMux()
+	r.HandleFunc("/", HandlerFactory(cfg, p))
+	// r := mux.NewRouter()
+	// r.HandleFunc("/", HandlerFactory(cfg, p)).Methods(http.MethodGet)
 
 	total := 10000
 	start := time.Now()
